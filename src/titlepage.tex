@@ -1,0 +1,109 @@
+\begin{titlepage}
+  \begin{center}
+
+    \vspace*{1cm}
+
+
+    % Start Title box
+    \rule{\linewidth}{0.5mm}  \\[0.4cm]        
+    
+    \ifx\projectTitle\undefined
+      % If projectTitle is not given, 
+      % print documentTitle as focus (REQUIRED)
+      \Huge \textbf{\documentTitle}  \\
+    \else
+      % If projectTitle is given, 
+      % print projectTitle as focus
+      \Huge \textbf{\projectTitle}  \\[0.2cm]
+      \ifx\projectSubtitle\undefined
+      \else
+      % If projectSubtitle is also given,
+      %  print projectSubtitle under focus 
+      \huge \textbf{\projectSubtitle}  \\[0.4cm]
+      \fi
+      % print documentTitle (REQUIRED) underneath projectTitle
+      \LARGE \documentTitle  \\
+    \fi
+    
+    % End title box
+    \rule{\linewidth}{0.5mm}  \\[1.5cm]        
+    
+
+    \vspace{0.5cm}
+
+
+    % Print Author (REQUIRED)
+    \textit{Author:}  \\
+    \LARGE \textbf{\author}
+    
+
+    \ifx\firstSupervisor\undefined
+    \else
+
+      \vspace{0.5cm}
+
+      \ifx\secondSupervisor\undefined
+        % If only firstSupervisor is given
+        % print only firstSupervisor
+        \textit{Supervisor:}  \\
+        \LARGE \textbf{\firstSupervisor}  \\
+
+      \else
+
+        % If more than one supervisor is given, print all
+        \textit{Supervisors:}  \\
+        \LARGE \textbf{\firstSupervisor}  \\
+        \LARGE \textbf{\secondSupervisor}  \\
+
+        \ifx\thirdSupervisor\undefined
+        \else
+          \LARGE \textbf{\thirdSupervisor}  \\
+        \fi
+      \fi
+    \fi
+
+    
+    \vfill
+    
+    
+    % Mark as draft if specified
+    \if\draft1
+      \vspace{0.5cm}
+      \Huge \textbf{DRAFT} \\
+    \fi
+    
+    
+    \vspace{0.5cm}
+
+
+    % Print department if given
+    \ifx\department\undefined
+    \else
+      \Large \department  \\
+    \fi
+
+    % Print institution if given
+    \ifx\institution\undefined
+    \else
+      \Large \institution  \\
+    \fi
+
+
+    \if\draft1
+      \draftdate
+      \Large \textbf{\today}
+    \else
+      \monthyeardate
+      \Large \today
+    \fi
+
+
+  \end{center}
+\end{titlepage}
+
+
+% \title{Stochastic modelling of EEG data}
+% \author{Blake Cook}
+% \maketitle
+% \vspace*{-1cm}
+% \rule{.96\linewidth}{0.2mm} 

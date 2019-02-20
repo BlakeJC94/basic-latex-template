@@ -25,7 +25,8 @@
   fancyhdr,    % Extended header and footer options 
   hyperref,    % Generate hyperlinks for references
   multicol,    % Multicolumn environment
-  natbib       % Better inline citations (\citep, \citet, \citeauthor)
+  natbib,      % Better inline citations (\citep, \citet, \citeauthor)
+  setspace     % Simple linespacing (\doublespacing)
 }
 
 
@@ -101,9 +102,9 @@
 
 % Define \outline{} for drafting structure
 \newcommand{\outline}[1]{
-  \ifx\dispoutline\undefined 
+  \ifx\draft\undefined 
   \else 
-    \if\dispoutline1 
+    \if\draft1 
       \noindent [#1] 
     \fi 
   \fi
@@ -117,17 +118,11 @@
 
 % Define date format for draft
 \newdateformat{draftdate}{
-  \currenttime \space AEST 
+  \currenttime \space \timezone 
   \space - \space 
   \ordinal{DAY} of \monthname[\THEMONTH], 
   \THEYEAR
 }
-
-% Conditional for double spacing if \dispoutline=1
-\if\dispoutline1
-    \usepackage{setspace}
-    \doublespacing 
-\fi
 
 % Conditional for inverting text and page colours if \darkmode=1
 \if\darkmode1 

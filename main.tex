@@ -1,4 +1,22 @@
 % ================================================================
+% SET DOCUMENT FIELDS
+
+% Required fields
+\def\documentTitle{Document Title}
+\def\author{Author}
+
+% Optional fields (comment out fields that are not needed)
+\def\projectTitle{Project Title:}
+% \def\projectSubtitle{Project Subtitle}
+\def\firstSupervisor{Supervisor 1}
+\def\secondSupervisor{Supervisor 2}
+% \def\thirdSupervisor{Supervisor 3}
+\def\department{Department}
+\def\institution{Institution}
+\def\timezone{GMT}
+
+
+% ================================================================
 % SET DOCUMENT PARAMETERS
 
 % Main
@@ -21,7 +39,7 @@
 
 % [USER] Review mode
 %   toggles doc structure and double space
-\def\dispoutline{0}  
+\def\draft{0}  
 
 % [USER] Dark mode
 %   inverts page and text colour
@@ -37,18 +55,22 @@
 % WRITE DOCUMENT
 \begin{document}
 
-  \input{src/title-page}
+  \input{src/titlepage}
 
   % Display notes when drafting
-  \if\dispoutline1
+  \if\draft1
   
-    % Disable page number for notes 
-    \pagenumbering{gobble}  
+    % Enable roman page numbering for review notes
+    \pagenumbering{roman}  
 
     \input{src/notes/some-notes}
 
     \newpage
-    % Enable page numbering for document
+
+    % Use double spacing if \draft=1
+    \doublespacing 
+    
+    % Enable arabic page numbering for document
     \pagenumbering{arabic}  
     
   \fi
