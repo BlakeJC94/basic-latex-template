@@ -1,4 +1,15 @@
 % ================================================================
+% LaTeX Template, contains guidelines on coding practice and includes extended 
+%   functionality on top of the article class, to be used for reports.
+% 
+% Created from accumulated spaghetti code from my masters assignments from 
+%   2015--2018 and various excerpts from StackExchange and Github, motivated by 
+%   a literature review.
+%
+% Written by Blake Cook on 2019-02-20.
+% Copyright (c) 2019. All rights reserved.
+% 
+% ================================================================
 % SET DOCUMENT FIELDS
 
 % Required fields
@@ -55,9 +66,11 @@
 % WRITE DOCUMENT
 \begin{document}
 
+  % PRINT TITLEPAGE
   \input{src/titlepage}
 
-  % Display notes when drafting
+
+  % PRINT NOTES IN PREFACE IF DRAFTING
   \if\draft1
   
     % Enable roman page numbering for review notes
@@ -76,11 +89,14 @@
   \fi
 
 
-  \input{src/sections/a-section}
+  % WRITE MAIN DOCUMENT MATTER
 
+  \input{src/sections/a-section}
 
   \input{src/sections/another-section}
 
+
+  % WRITE FORMATTED REFERENCES
 
   \input{src/references}
 
