@@ -1,0 +1,137 @@
+% ================================================================
+% LOAD PACKAGES
+
+% Default AMS packages
+\usepackage{
+  amsmath,  % Extended equation environments
+  amssymb,  % Extended maths symbols (also loads amsfonts)
+  amsthm    % Theorem-like structures
+} 
+
+% Graphics packages
+\usepackage{
+  caption,    % Write captions 
+  graphicx,   % Include graphics (with extras)
+  pgfplots,   % For charts
+  tikz,       % Draw tikz pictures
+  subcaption  % Write subcaptions
+}
+\pgfplotsset{compat=1.13}  % set version
+
+% Formatting packages
+\usepackage{
+  datetime,    % Output date and time 
+  easyReview,  % Reviewer commands (\replace{.}{.}, \remove{.}, \add{.})
+  fancyhdr,    % Extended header and footer options 
+  hyperref,    % Generate hyperlinks for references
+  multicol,    % Multicolumn environment
+  natbib       % Better inline citations (\citep, \citet, \citeauthor)
+}
+
+
+% ================================================================
+% DECLARE THEOREM ENVIRONMENTS
+\theoremstyle{plain}
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+  \newtheorem*{definition}{Definition}
+  \newtheorem{remark}[theorem]{Remark}
+  \newtheorem{exercise}[theorem]{Exercise}
+  \newtheorem{problem}{Problem}
+  \newtheorem{solution}{Solution}
+  \newtheorem{example}[theorem]{Example}
+    
+
+% ================================================================
+% DECLARE MATHS MACROS 
+
+% Common symbols
+\def\vep{\varepsilon}           % \vep - Script eps
+\def\del{\partial}              % \del Partial derivative
+\def\P{\mathbb{P}}              % \P - Probability measure
+\def\E{\mathbb{E}}              % \E - Expectation operator
+\def\Var{\text{Var}}            % \Var - Variance operator
+\def\Cov{\text{Cov}}            % \Cov - Covariance
+\def\F{\mathcal{F}}             % \F - Sigma-field
+\def\Tr{\text{Tr}}              % \Tr - Matrix trace
+\def\Det{\text{Det}}            % \Det - Matrix determinant
+\def\grad{\boldsymbol{\nabla}}  % \grad - Gradient operator
+\def\lap{\nabla^2}              % \lap - Laplacian
+\def\I{\mathbb{I}}              % \I - Indicator 
+
+% Common structures
+\newcommand{\br}[1]{\left \lbrace #1 \right \rbrace}     % \br{.} - braces
+\newcommand{\abs}[1]{\left \vert #1 \right \vert}        % \abs{.} - abs val
+\newcommand{\floor}[1]{\left \lfloor #1 \right \rfloor}  % \floor{.} - floor
+\newcommand{\ceil}[1]{\left \lceil #1 \right \rceil}     % \ceil{.} - ceiling 
+\newcommand{\norm}[1]{\left \|#1 \right \|}              % \norm{.} - norm
+\newcommand{\vc}[1]{\boldsymbol{#1}}                     % \vc{.} - vector (bb)
+
+\newcommand{\ncr}[2]{  % \ncr{}{} - Combination
+  \left(               % e.g. \ncr{25}{3}
+    \begin{matrix} 
+      #1 \\ #2 
+    \end{matrix} 
+  \right)
+}
+
+\newcommand{\ddx}[3][]{  % \ddx[]{}{} - Derivative operator 
+  \frac{d^{#1} {#2}}     % e.g. \ddx{f}{x}, \ddx[2]{f}{x}
+    {d{#3}^{#1}}  
+} 
+
+\newcommand{\ppx}[3][]{      % \ppx[]{}{} - Partial derivative operator 
+  \frac{\partial^{#1} {#2}}  % \ppx{f}{x}, \ppx[2]{f}{x}
+    {\partial{#3}^{#1}}      % TODO: update command for mixed partials
+}
+
+
+% ================================================================
+% DOCUMENT FORMATTING
+
+% Design header and footer
+\fancyhf{} 
+\rfoot{Page \thepage}
+
+% Clear default bib heading (required for multi column bib)
+\renewcommand\bibsection{}
+
+% Define \outline{} for drafting structure
+\newcommand{\outline}[1]{
+  \ifx\dispoutline\undefined 
+  \else 
+    \if\dispoutline1 
+      \noindent [#1] 
+    \fi 
+  \fi
+}
+
+
+% Define date format for final
+\newdateformat{monthyeardate}{
+  \monthname[\THEMONTH], \THEYEAR
+}
+
+% Define date format for draft
+\newdateformat{draftdate}{
+  \currenttime \space AEST 
+  \space - \space 
+  \ordinal{DAY} of \monthname[\THEMONTH], 
+  \THEYEAR
+}
+
+% Conditional for double spacing if \dispoutline=1
+\if\dispoutline1
+    \usepackage{setspace}
+    \doublespacing 
+\fi
+
+% Conditional for inverting text and page colours if \darkmode=1
+\if\darkmode1 
+    \color{white}  % change text colour to white
+    \usepackage{pagecolor} 
+    \pagecolor{black} 
+\fi

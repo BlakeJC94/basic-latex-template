@@ -1,0 +1,66 @@
+% ================================================================
+% SET DOCUMENT PARAMETERS
+
+% Main
+\documentclass[
+  10pt,    % default font size
+  a4paper  % paper size
+]{article}
+
+% Margins
+\usepackage{geometry}
+\geometry{
+  top=2cm,
+  bottom=2cm,
+  left=2cm,
+  right=2cm
+}  
+
+% Paragraph spacing
+\setlength{\parskip}{1em}
+
+% [USER] Review mode
+%   toggles doc structure and double space
+\def\dispoutline{0}  
+
+% [USER] Dark mode
+%   inverts page and text colour
+\def\darkmode{0} 
+
+
+% ================================================================
+% LOAD PREAMBLE
+\input{src/preamble}
+
+
+% ================================================================
+% WRITE DOCUMENT
+\begin{document}
+
+  \input{src/title-page}
+
+  % Display notes when drafting
+  \if\dispoutline1
+  
+    % Disable page number for notes 
+    \pagenumbering{gobble}  
+
+    \input{src/notes/some-notes}
+
+    \newpage
+    % Enable page numbering for document
+    \pagenumbering{arabic}  
+    
+  \fi
+
+
+  \input{src/sections/a-section}
+
+
+  \input{src/sections/another-section}
+
+
+  \input{src/references}
+
+
+\end{document}
