@@ -7,22 +7,22 @@
     % Start Title box
     \rule{\linewidth}{0.5mm}  \\[0.4cm]        
     
-    \ifx\projectTitle\undefined
-      % If projectTitle is not given, 
-      % print documentTitle as focus (REQUIRED)
-      \Huge \textbf{\documentTitle}  \\
+    \ifx\PROJECTTITLE\undefined
+      % If PROJECTTITLE is not given, 
+      % print DOCTITLE as focus (REQUIRED)
+      \Huge \textbf{\DOCTITLE}  \\
     \else
-      % If projectTitle is given, 
-      % print projectTitle as focus
-      \Huge \textbf{\projectTitle}  \\[0.2cm]
-      \ifx\projectSubtitle\undefined
+      % If PROJECTTITLE is given, 
+      % print PROJECTTITLE as focus
+      \Huge \textbf{\PROJECTTITLE}  \\[0.2cm]
+      \ifx\PROJECTSUBTITLE\undefined
       \else
-      % If projectSubtitle is also given,
-      %  print projectSubtitle under focus 
-      \huge \textbf{\projectSubtitle}  \\[0.4cm]
+      % If PROJECTSUBTITLE is also given,
+      %  print PROJECTSUBTITLE under focus 
+      \huge \textbf{\PROJECTSUBTITLE}  \\[0.4cm]
       \fi
-      % print documentTitle (REQUIRED) underneath projectTitle
-      \LARGE \documentTitle  \\
+      % print DOCTITLE (REQUIRED) underneath PROJECTTITLE
+      \LARGE \DOCTITLE  \\
     \fi
     
     % End title box
@@ -34,61 +34,57 @@
 
     % Print Author (REQUIRED)
     \textit{Author:}  \\
-    \LARGE \textbf{\author}
+    \LARGE \textbf{\AUTHOR}
     
 
-    \ifx\firstSupervisor\undefined
+    \ifx\FIRSTSUPERVISOR\undefined
     \else
 
       \vspace{0.5cm}
 
-      \ifx\secondSupervisor\undefined
-        % If only firstSupervisor is given
-        % print only firstSupervisor
+      \ifx\SECONDSUPERVISOR\undefined
+        % If only FIRSTSUPERVISOR is given
+        % print only FIRSTSUPERVISOR
         \textit{Supervisor:}  \\
-        \LARGE \textbf{\firstSupervisor}  \\
+        \LARGE \textbf{\FIRSTSUPERVISOR}  \\
 
       \else
 
         % If more than one supervisor is given, print all
         \textit{Supervisors:}  \\
-        \LARGE \textbf{\firstSupervisor}  \\
-        \LARGE \textbf{\secondSupervisor}  \\
+        \LARGE \textbf{\FIRSTSUPERVISOR}  \\
+        \LARGE \textbf{\SECONDSUPERVISOR}  \\
 
-        \ifx\thirdSupervisor\undefined
+        \ifx\THIRDSUPERVISOR\undefined
         \else
-          \LARGE \textbf{\thirdSupervisor}  \\
+          \LARGE \textbf{\THIRDSUPERVISOR}  \\
         \fi
       \fi
     \fi
 
     
     \vfill
-    
-    
+
+
+    % Print DEPARTMENT if given
+    \ifx\DEPARTMENT\undefined
+    \else
+      \Large \DEPARTMENT  \\
+    \fi
+
+    % Print INSTITUTION if given
+    \ifx\INSTITUTION\undefined
+    \else
+      \Large \INSTITUTION  \\
+    \fi
+
     % Mark as draft if specified
     \if\draft1
       \vspace{0.5cm}
       \Huge \textbf{DRAFT} \\
     \fi
-    
-    
-    \vspace{0.5cm}
 
-
-    % Print department if given
-    \ifx\department\undefined
-    \else
-      \Large \department  \\
-    \fi
-
-    % Print institution if given
-    \ifx\institution\undefined
-    \else
-      \Large \institution  \\
-    \fi
-
-
+    % Print date
     \if\draft1
       \draftdate
       \Large \textbf{\today}
@@ -101,9 +97,3 @@
   \end{center}
 \end{titlepage}
 
-
-% \title{Stochastic modelling of EEG data}
-% \author{Blake Cook}
-% \maketitle
-% \vspace*{-1cm}
-% \rule{.96\linewidth}{0.2mm} 

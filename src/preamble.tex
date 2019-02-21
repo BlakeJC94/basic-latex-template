@@ -119,9 +119,9 @@
 % Define date format for draft
 \newdateformat{draftdate}{
   \currenttime 
-  \ifx\timezone\undefined
+  \ifx\TIMEZONE\undefined
   \else
-    \space \timezone 
+    \space \TIMEZONE 
   \fi
   \space - \space 
   \ordinal{DAY} of \monthname[\THEMONTH], 
