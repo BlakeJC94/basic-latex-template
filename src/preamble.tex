@@ -20,13 +20,15 @@
 
 % Formatting packages
 \usepackage{
-  bookmark,    % Better bookmark management for compile
+  bookmark,    % Better bookmark management
   datetime,    % Output date and time 
   easyReview,  % Reviewer commands (\replace{.}{.}, \remove{.}, \add{.})
+  enumitem,    % Better control over lists (used for to-do lists)
   fancyhdr,    % Extended header and footer options 
   hyperref,    % Generate hyperlinks for references
   multicol,    % Multicolumn environment
   natbib,      % Better inline citations (\citep, \citet, \citeauthor)
+  pifont,      % Extra symbols (used for check boxes in to-do env)
   setspace     % Simple linespacing (\doublespacing)
 }
 
@@ -128,4 +130,27 @@
   \ordinal{DAY} of \monthname[\THEMONTH], 
   \THEYEAR
 }
+
+
+% Define to-do list environment
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+% Define ticks and crosses symbols
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+% Define items ticks and crosses for to-do env
+\newcommand{\done}{%
+  \rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+  \hspace{-5.5pt}
+}
+\newcommand{\wontfix}{%
+  \rlap{$\square$}{\large\hspace{1pt}\xmark}%
+}
+% example code:
+% \begin{todolist}
+%   \item[\done] Frame the problem
+%   \item Write solution
+%   \item[\wontfix] profit
+% \end{todolist}
+% source: https://tex.stackexchange.com/a/247688
 
