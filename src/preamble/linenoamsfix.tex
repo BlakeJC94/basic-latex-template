@@ -1,0 +1,39 @@
+% Fix for lineno package and ams environemnts compatibility,
+%   makes line numbers appear on paragraphs preceeding 
+%   ams environments.
+% 
+% Source: http://phaseportrait.blogspot.com/2007/08/
+%   lineno-and-amsmath-compatibility.html
+% 
+% Note on adding new environments: 
+% 
+% This is all that is needed for the standard AMS math environments.
+% However, if you want to add environment BLAH, you can add
+% 
+%     \patchAmsMathEnvironmentForLineno{BLAH}
+% 
+% before the closing curly brace. 
+% If you want to add environments BLAH and BLAH*, you can add
+% 
+%     \patchBothAmsMathEnvironmentsForLineno{BLAH}
+% 
+% before the closing curly brace.
+
+
+\newcommand*\patchAmsMathEnvironmentForLineno[1]{%
+  \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+  \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
+  \renewenvironment{#1}%
+     {\linenomath\csname old#1\endcsname}%
+     {\csname oldend#1\endcsname\endlinenomath}}% 
+\newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
+  \patchAmsMathEnvironmentForLineno{#1}%
+  \patchAmsMathEnvironmentForLineno{#1*}}%
+\AtBeginDocument{%
+\patchBothAmsMathEnvironmentsForLineno{equation}%
+\patchBothAmsMathEnvironmentsForLineno{align}%
+\patchBothAmsMathEnvironmentsForLineno{flalign}%
+\patchBothAmsMathEnvironmentsForLineno{alignat}%
+\patchBothAmsMathEnvironmentsForLineno{gather}%
+\patchBothAmsMathEnvironmentsForLineno{multline}%
+}
